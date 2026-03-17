@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MedFusion Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+  <div class="header">
+    <h1>MedFusion Disease Surveillance Dashboard</h1>
+    <p>Real-time global disease monitoring — WHO · Disease.sh · ProMED · ECDC</p>
+  </div>
+
+  <div class="search-section">
+    <input type="text" id="searchInput" placeholder="Search a country... (e.g. India, USA)"/>
+    <button onclick="searchCountry()">Search</button>
+  </div>
+
+  <div id="resultBox" class="result-box hidden"></div>
+
+  <div class="stats-grid">
+    <div class="card red">
+      <h3>Total Cases</h3>
+      <p id="totalCases">Loading...</p>
+    </div>
+    <div class="card orange">
+      <h3>Total Deaths</h3>
+      <p id="totalDeaths">Loading...</p>
+    </div>
+    <div class="card green">
+      <h3>Total Recovered</h3>
+      <p id="totalRecovered">Loading...</p>
+    </div>
+    <div class="card blue">
+      <h3>Countries Affected</h3>
+      <p id="totalCountries">Loading...</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Global Outbreak Map</h2>
+    <p>Red circles = cases. Bigger circle = more cases. Click any circle for details. Yellow = AI anomaly detected.</p>
+    <div id="map"></div>
+  </div>
+
+  <div class="section">
+    <h2>Top 10 Most Affected Countries</h2>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <div class="section" id="insightsSection" style="display:none">
+    <h2>AI Insights</h2>
+    <p>Trend analysis and model accuracy metrics</p>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-label">7-Day Trend</div>
+        <div class="insight-value" id="trend7">--</div>
+        <div class="insight-sub" id="trendDirection">--</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">14-Day Trend</div>
+        <div class="insight-value" id="trend14">--</div>
+        <div class="insight-sub">vs 14 days ago</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">Avg Daily New Cases</div>
+        <div class="insight-value" id="avgDaily">--</div>
+        <div class="insight-sub">over last 30 days</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">7-Day Forecast</div>
+        <div class="insight-value" id="forecastChange">--</div>
+        <div class="insight-sub" id="forecastCases">--</div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:25px">Model Error Metrics</h2>
+    <p>How accurate is our ML prediction model?</p>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-label">RMSE</div>
+        <div class="insight-value" id="rmse">--</div>
+        <div class="insight-sub">Root Mean Square Error</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">MAE</div>
+        <div class="insight-value" id="mae">--</div>
+        <div class="insight-sub">Mean Absolute Error</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">R² Score</div>
+        <div class="insight-value" id="r2">--</div>
+        <div class="insight-sub" id="r2Label">Model fit quality</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">Model Quality</div>
+        <div class="insight-value" id="modelQuality">--</div>
+        <div class="insight-sub">Overall rating</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="forecastSection" style="display:none">
+    <h2>Historical Trend Chart</h2>
+    <canvas id="forecastChart"></canvas>
+  </div>
+
+  <div class="section">
+    <h2>AI Anomaly Detection</h2>
+    <p>Machine learning (IsolationForest) scanning for unusual outbreak patterns globally</p>
+    <div id="anomalyList">Loading ML analysis...</div>
+  </div>
+
+  <div class="section">
+    <h2>Live Outbreak Alerts — ProMED</h2>
+    <p>Real infectious disease alerts used by WHO and CDC</p>
+    <div id="alertFeed">Loading alerts...</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
