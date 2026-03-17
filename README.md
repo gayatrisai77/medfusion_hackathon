@@ -1,1 +1,16 @@
-# medfusion_hackathon
+# Medfusion_hackathon
+MedFusion is a smart disease surveillance dashboard designed to monitor global health trends efficiently. The platform collects data from multiple trusted international health sources and presents it through interactive visualizations such as maps and charts. It also incorporates machine learning techniques to detect unusual outbreak patterns and predict future case trends. The main goal of the project is to help users quickly understand where diseases are spreading and anticipate what might happen next.
+
+The frontend of the application is built using HTML, CSS, and JavaScript, ensuring a simple and responsive user interface. For data visualization, Chart.js is used to create graphs, while Leaflet.js combined with OpenStreetMap is used to display interactive maps. The backend is developed using Python with FastAPI, which enables fast and efficient API handling. Machine learning models are implemented using libraries such as pandas and numpy for data processing.
+
+The system integrates multiple global data sources to ensure accuracy and completeness. These include Disease.sh for worldwide and country-level case data, the World Health Organization for health indicators, ProMED for outbreak alerts, and the European Centre for Disease Prevention and Control for regional data across Europe.
+
+The dashboard provides several key features. It includes a real-time display of global statistics such as total cases, deaths, and recoveries. Users can search for specific countries and view the most affected regions. An interactive map visually represents case distribution, where circle sizes indicate the number of cases and special markers highlight anomalies detected by the system. The platform also includes AI-driven insights that identify abnormal patterns, predict future case trends for the next seven days, and indicate whether cases are increasing or decreasing.
+
+Various visualization tools are included to enhance understanding. Line charts display historical trends, bar charts compare the most affected countries, and a live alert feed provides continuous updates on outbreaks. The system also combines multiple data sources into a single unified dashboard, making it easier for users to access all relevant information in one place.
+
+The machine learning component consists of two main parts. The first is anomaly detection using the Isolation Forest model. It takes inputs such as cases per million, deaths per million, and daily case statistics to identify unusual patterns across countries. This acts as an early warning system for potential outbreaks. The second component is forecasting using Linear Regression, which uses the last thirty days of case data to predict trends for the next seven days.
+
+To evaluate model performance, standard metrics are used. RMSE measures prediction error, MAE calculates the average error, and R-squared determines the accuracy of the model.
+
+In conclusion, the MedFusion dashboard offers a comprehensive and intelligent approach to disease monitoring by combining real-time data with machine learning insights. It simplifies complex global health data and provides users with clear, actionable information to better understand and respond to disease outbreaks.
